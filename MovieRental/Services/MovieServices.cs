@@ -68,8 +68,9 @@ namespace MovieRental.Services
             var query = "UPDATE Customers " +
                             "SET [Name] = @Name," +
                             "[YearReleased] = @YearReleased," +
-                            "[Director] = @Director" +
-                            "[GenreID] = @GenreID " +
+                            "[Director] = @Director," +
+                            "[GenreID] = @GenreID," +
+                            "[IsCheckedOut] = @IsCheckedOut " +
                             "WHERE ID = @ID";
 
             var cmd = new SqlCommand(query, Connection);
@@ -77,11 +78,28 @@ namespace MovieRental.Services
             cmd.Parameters.AddWithValue("@YearReleased", collection["YearReleased"]);
             cmd.Parameters.AddWithValue("@Director", collection["Director"]);
             cmd.Parameters.AddWithValue("@GenreID", collection["GenreID"]);
+            cmd.Parameters.AddWithValue("@IsCheckedOut", collection["IsCheckedOut"]);
             cmd.Parameters.AddWithValue("@ID", id);
 
             Connection.Open();
             cmd.ExecuteNonQuery();
             Connection.Close();
         }
+
+        public void CheckInMovie(int id)
+        {
+            var query = "UPDATE Customers " +
+                            "SET [IsCheckedOut] = False " +
+                            "WHERE ID = @ID";
+
+            var cmd = new SqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@ID", id);
+
+            Connection.Open();
+            cmd.ExecuteNonQuery();
+            Connection.Close();
+        }
+
+        public 
     }
 }

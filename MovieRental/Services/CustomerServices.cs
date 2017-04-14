@@ -81,5 +81,30 @@ namespace MovieRental.Services
             cmd.ExecuteNonQuery();
             Connection.Close();
         }
+
+        public ViewModels.CheckCustomerRental GetCheckedOutMoviesAndCustomers()
+        {
+            var checkCustomerRentalModel = new ViewModels.CheckCustomerRental();
+
+            var query = "SELECT Movies.ID AS 'Movie ID', Movies.Name AS Title, RentalLog.DateCheckedOut AS 'Checkout Date', " +
+                            "RentalLog.DueDate AS 'Due Date', Customers.Name AS 'Customer Name', " +
+                            "Customers.Email,Customers.PhoneNumber AS 'Phone Number' " +
+                        "FROM Movies " +
+                        "JOIN RentalLog ON Movies.ID = RentalLog.MovieID " +
+                        "JOIN Customers ON RentalLog.CustomerID = Customers.ID " +
+                        "WHERE IsCheckedOut = 'True' " +
+                        "ORDER BY Customers.Name ASC";
+
+            var cmd = new SqlCommand(query, Connection);
+
+            Connection.Open();
+            var reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                checkCustomerRentalModel = new ViewModels.CheckCustomerRental(reader);
+            }
+
+            return checkCustomerRentalModel;
+        }
     }
 }

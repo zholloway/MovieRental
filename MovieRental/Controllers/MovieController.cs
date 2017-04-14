@@ -17,5 +17,12 @@ namespace MovieRental.Controllers
         {
             return View(movieServices.GetAllMovies());
         }
+
+        [HttpPost]
+        public ActionResult CheckInMovie(int id)
+        {
+            //TODO: Fix this shit right here
+            return RedirectToAction("Index");
+        }
     }
 }

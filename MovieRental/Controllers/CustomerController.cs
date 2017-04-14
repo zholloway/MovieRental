@@ -17,5 +17,11 @@ namespace MovieRental.Controllers
         {
             return View(customerServices.GetAllCustomers());
         }
+
+        [HttpGet]
+        public ActionResult CheckOutMovie(int id)
+        {
+            return View();
+        }
     }
 }
