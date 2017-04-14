@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Daily Ops - All Movies</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -63,7 +63,7 @@
         <td>
             @if(item.IsCheckedOut.ToString() == "True")
             {
-                @Html.ActionLink("Check In", "CheckInMovie", new { id = item.ID }, "Customer");
+                @Html.ActionLink("Check In", "CheckInMovie", "Movie", new { id = item.ID }, null);
             }
             else if(item.IsCheckedOut.ToString() == "False")
             {
