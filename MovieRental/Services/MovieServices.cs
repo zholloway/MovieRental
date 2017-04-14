@@ -85,34 +85,5 @@ namespace MovieRental.Services
             cmd.ExecuteNonQuery();
             Connection.Close();
         }
-
-        public void CheckInMovie(int id)
-        {
-            //update movie status
-            var query = "UPDATE Movies " +
-                            "SET [IsCheckedOut] = 'False' " +
-                            "WHERE ID = @ID";
-
-            var cmd = new SqlCommand(query, Connection);
-            cmd.Parameters.AddWithValue("@ID", id);
-
-            Connection.Open();
-            cmd.ExecuteNonQuery();
-            Connection.Close();
-
-            //now to delete RentalLog for this movie
-            query = "DELETE FROM RentalLog WHERE MovieID = @MovieID";
-            cmd = new SqlCommand(query, Connection);
-            cmd.Parameters.AddWithValue("@MovieID", id);
-
-            Connection.Open();
-            cmd.ExecuteNonQuery();
-            Connection.Close();
-        }
-
-        public void CheckOutMovie(int id)
-        {
-
-        }
     }
 }

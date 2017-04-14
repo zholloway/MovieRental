@@ -156,7 +156,9 @@
     <Compile Include="Services\CustomerServices.cs" />
     <Compile Include="Services\GenreServices.cs" />
     <Compile Include="Services\MovieServices.cs" />
+    <Compile Include="Services\RentalServices.cs" />
     <Compile Include="ViewModels\CheckCustomerRental.cs" />
+    <Compile Include="ViewModels\CheckOutMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -197,11 +199,11 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
+    <Content Include="Views\Rental\CustomersForCheckout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Genre\" />
-    <Folder Include="Views\Rental\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -16,13 +16,6 @@ namespace MovieRental.Controllers
         public ActionResult Index()
         {
             return View(movieServices.GetAllMovies());
-        }
-
-        
-        public ActionResult CheckInMovie(int id)
-        {
-            movieServices.CheckInMovie(id);
-            return RedirectToAction("Index");
-        }
+        }       
     }
 }

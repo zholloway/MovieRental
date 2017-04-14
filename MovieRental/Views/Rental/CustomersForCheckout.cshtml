@@ -1,0 +1,45 @@
+﻿@model MovieRental.ViewModels.CheckOutMovieViewModel
+@using MovieRental.Services
+@using MovieRental.Models
+@{ const string PathToMovieRentalDatabase = @"Server=localhost\SQLEXPRESS;Database=MovieRental;Trusted_Connection=True;";
+    CustomerServices customerServices = new CustomerServices(PathToMovieRentalDatabase);}
+@{
+    ViewBag.Title = "CheckOutMovie";
+
+    List<Customer> customerList = customerServices.GetAllCustomers();
+}
+
+<h2>Daily Ops - Customer List for Movie Checkout</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <span>Name</span>
+        </th>
+        <th>
+            <span>Email</span>
+        </th>
+        <th>
+            <span>Phone Number</span>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var customer in customerList) {
+    <tr>
+        <td>
+            @Html.Raw(customer.Name)
+        </td>
+        <td>
+            @Html.Raw(customer.Email)
+        </td>
+        <td>
+            @Html.Raw(customer.PhoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Checkout", "CheckOutMovie", new { movieID = Model.ID, customerID = customer.ID})
+        </td>
+    </tr>
+}
+
+</table>
