@@ -16,5 +16,35 @@ namespace MovieRental.Controllers
         {
             return View(genreServices.GetAllGenres());
         }
+
+        public ActionResult CreateGenre()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateGenre(FormCollection collection)
+        {
+            genreServices.CreateGenre(collection);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult EditGenre(int id)
+        {
+            return View(genreServices.GetOneGenreByID(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditGenre(FormCollection collection)
+        {
+            genreServices.EditGenre(collection);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteGenre(int id)
+        {
+            genreServices.DeleteGenre(id);
+            return RedirectToAction("Index");
+        }
     }
 }

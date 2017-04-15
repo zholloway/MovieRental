@@ -18,10 +18,34 @@ namespace MovieRental.Controllers
             return View(customerServices.GetAllCustomers());
         }
 
-        [HttpGet]
-        public ActionResult CheckOutMovie(int id)
+        public ActionResult AddNewCustomer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddNewCustomer(FormCollection collection)
+        {
+            customerServices.CreateCustomer(collection);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult EditCustomer(int id)
+        {
+            return View(customerServices.GetOneCustomerByID(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditCustomer(FormCollection collection)
+        {
+            customerServices.EditCustomer(collection);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteCustomer(int id)
+        {
+            customerServices.DeleteCustomer(id);
+            return RedirectToAction("Index");
         }
     }
 }

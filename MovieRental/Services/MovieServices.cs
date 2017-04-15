@@ -35,6 +35,26 @@ namespace MovieRental.Services
             return movieList;
         }
 
+        public Movie GetOneMovieByID(int id)
+        {
+            var singleMovie = new Movie();
+
+            var query = "SELECT * FROM Movies WHERE ID=@ID";
+
+            var cmd = new SqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@ID", id);
+
+            Connection.Open();
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                singleMovie = new Movie(reader);
+            }
+            Connection.Close();
+
+            return singleMovie;
+        }
+
         public void CreateMovie(FormCollection collection)
         {
             var query = "INSERT INTO Movies (Name, YearReleased, Director, GenreID) "
@@ -63,7 +83,7 @@ namespace MovieRental.Services
             Connection.Close();
         }
 
-        public void EditMovie(int id, FormCollection collection)
+        public void EditMovie(FormCollection collection)
         {
             var query = "UPDATE Customers " +
                             "SET [Name] = @Name," +
@@ -79,7 +99,7 @@ namespace MovieRental.Services
             cmd.Parameters.AddWithValue("@Director", collection["Director"]);
             cmd.Parameters.AddWithValue("@GenreID", collection["GenreID"]);
             cmd.Parameters.AddWithValue("@IsCheckedOut", collection["IsCheckedOut"]);
-            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@ID", collection["ID"]);
 
             Connection.Open();
             cmd.ExecuteNonQuery();
