@@ -85,7 +85,7 @@ namespace MovieRental.Services
 
         public void EditMovie(FormCollection collection)
         {
-            var query = "UPDATE Customers " +
+            var query = "UPDATE Movies " +
                             "SET [Name] = @Name," +
                             "[YearReleased] = @YearReleased," +
                             "[Director] = @Director," +

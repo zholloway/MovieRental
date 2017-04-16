@@ -26,7 +26,7 @@ namespace MovieRental.Controllers
         public ActionResult CreateMovie(FormCollection collection)
         {
             movieServices.CreateMovie(collection);
-            return RedirectToAction("Index");
+            return RedirectToAction("CRUDmovies");
         }
 
         public ActionResult EditMovie(int id)
@@ -38,13 +38,19 @@ namespace MovieRental.Controllers
         public ActionResult EditMovie(FormCollection collection)
         {
             movieServices.EditMovie(collection);
-            return RedirectToAction("Index");
+            return RedirectToAction("CRUDmovies");
         }
 
         public ActionResult DeleteMovie(int id)
         {
             movieServices.DeleteMovie(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("CRUDmovies");
+        }
+
+        //for Admin
+        public ActionResult CRUDmovies()
+        {
+            return View(movieServices.GetAllMovies());
         }
     }
 }

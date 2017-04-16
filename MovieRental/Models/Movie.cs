@@ -23,7 +23,7 @@ namespace MovieRental.Models
             this.YearReleased = (int)reader["YearReleased"];
             this.Director = reader["Director"].ToString();
             this.GenreID = (int)reader["GenreID"];
-            this.IsCheckedOut = (bool)reader["IsCheckedOut"];
+            this.IsCheckedOut = Convert.ToBoolean(reader["IsCheckedOut"]);
         }
     }
 }

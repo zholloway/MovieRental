@@ -207,6 +207,9 @@
     <Content Include="Views\Genre\Index.cshtml" />
     <Content Include="Views\Genre\CreateGenre.cshtml" />
     <Content Include="Views\Genre\EditGenre.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Movie\CRUDmovies.cshtml" />
+    <Content Include="Views\Customer\CheckCustomerRental.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

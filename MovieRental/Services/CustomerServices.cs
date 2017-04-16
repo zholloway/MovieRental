@@ -102,9 +102,9 @@ namespace MovieRental.Services
             Connection.Close();
         }
 
-        public ViewModels.CheckCustomerRental GetCheckedOutMoviesAndCustomers()
+        public List<ViewModels.CheckCustomerRental> GetCheckedOutMoviesAndCustomers()
         {
-            var checkCustomerRentalModel = new ViewModels.CheckCustomerRental();
+            var checkCustomerRentalModel = new List<ViewModels.CheckCustomerRental>();
 
             var query = "SELECT Movies.ID AS 'Movie ID', Movies.Name AS Title, RentalLog.DateCheckedOut AS 'Checkout Date', " +
                             "RentalLog.DueDate AS 'Due Date', Customers.Name AS 'Customer Name', " +
@@ -121,7 +121,7 @@ namespace MovieRental.Services
             var reader = cmd.ExecuteReader();
             while(reader.Read())
             {
-                checkCustomerRentalModel = new ViewModels.CheckCustomerRental(reader);
+                checkCustomerRentalModel.Add(new ViewModels.CheckCustomerRental(reader)); 
             }
 
             return checkCustomerRentalModel;

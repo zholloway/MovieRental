@@ -47,5 +47,10 @@ namespace MovieRental.Controllers
             customerServices.DeleteCustomer(id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult CheckCustomerRental()
+        {
+            return View(customerServices.GetCheckedOutMoviesAndCustomers());
+        }
     }
 }

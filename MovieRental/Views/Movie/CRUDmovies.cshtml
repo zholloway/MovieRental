@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MovieRental.Models.Movie>
+
+<p>
+    @Html.ActionLink("Create New", "CreateMovie")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            Year Released
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Checked Out
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearReleased)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @switch (item.GenreID)
+            {
+                case 1:
+                    <span>Horror</span>
+                    break;
+                default:
+                    <span>Nothing Here</span>
+                    break;
+            }
+        </td>
+        <td>
+            @if (item.IsCheckedOut == true)
+            {
+                <span>True</span>
+            }
+            else if (item.IsCheckedOut == false)
+            {
+                <span>False</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditMovie", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "DeleteMovie", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
